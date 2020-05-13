@@ -1,0 +1,95 @@
+<div class="jumbotron jumbotron-fluid" style="background-color: rgb(8, 148, 148);">
+    <div class="container">
+      <h1 class="title">Anytime</h1>
+      <h4 class="subtitle">Dé app voor jouw vereniging!</h4>
+    </div>
+  </div>
+  
+  <div class="menubar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" routerLink="/grouppage">Anytime</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/events">Activiteiten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/calendar">Agenda</a>
+          </li>
+        </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-succes my-2 my-sm-0" type="button" data-toggle="modal" data-target="#deleteaccountModal">Verwijder Account</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logout()">Uitloggen</button>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+  <div class="modal fade" id="deleteaccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteaccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <table>
+            <tr>
+              <td>{{currentUsername}}, weet u zeker dat u zich voor alle activiteiten wilt afmelden?</td>
+            </tr>
+        </table>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <button class="btn btn-dark" type="button" (click)="deleteaccount()" data-toggle="modal" data-target="#deleteaccount2Modal" data-dismiss="modal">Afmelden activiteiten</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteaccount2Modal" tabindex="-1" role="dialog" aria-labelledby="deleteaccount2ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <table>
+            <tr>
+              <td>{{currentUsername}}, bent u er zeker van dat u uw account wilt verwijderen?</td>
+            </tr>
+        </table>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <button class="btn btn-dark" type="button" (click)="deleteregistration(currentID)" data-dismiss="modal">Account verwijderen</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="grouppage">
+    <h1 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+      {{currentUsername}}, welkom op je Anytime-pagina
+    </h1>
+  
+    <p>
+      Met Anytime ben je altijd op de hoogte welke leden van jouw groep aanwezig zijn bij trainingen, repetites of andere activiteiten. 
+      <br>
+      Bij activiteiten kun je nieuwe activiteiten aanmaken voor jouw vereniging. Daarnaast kun je je aanmelden voor geplande activiteiten. De activiteiten waarvoor je je hebt aangemeld, vind je weer terug in je agenda. 
+  
+      <br>
+      <br>
+      
+      Ontdek Anytime!
+  
+    </p>
+  
+  
+  </div>

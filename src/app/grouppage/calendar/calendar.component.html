@@ -1,0 +1,60 @@
+<div class="jumbotron jumbotron-fluid" style="background-color: rgb(8, 148, 148);">
+    <div class="container">
+      <h1 class="title">Anytime</h1>
+      <h4 class="subtitle">Dé app voor jouw vereniging!</h4>
+  </div>
+</div>
+  
+<div class="menubar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" routerLink="/grouppage">Anytime</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/events">Activiteiten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/calendar">Agenda</a>
+          </li>
+        </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logout()">Uitloggen</button>
+      </div>
+    </div>
+  </nav>
+</div>
+
+  <router-outlet></router-outlet>
+
+<br>
+
+<div class="calendar">
+
+  <h3>Geplande activiteiten voor {{currentUsername}}</h3>
+  <br>
+    <table>
+      <tr>
+      <th style="width: 120px;">Datum</th>
+      <th>Activiteit</th>
+      <th>Locatie</th>
+      <th>Omschrijving</th>
+    </tr>
+      <tr *ngFor="let event of events">
+        <td>{{event.allevent.eventdateformatted}}</td>
+        <td>{{event.allevent.eventname}}</td>
+        <td>{{event.allevent.eventlocation}}</td>
+        <td>{{event.allevent.eventdescription}}</td>
+      </tr>
+    </table>
+
+
+  
+
+
+
+</div>
+  

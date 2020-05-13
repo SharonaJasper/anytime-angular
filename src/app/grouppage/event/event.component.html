@@ -1,0 +1,223 @@
+
+<div class="jumbotron jumbotron-fluid" style="background-color: rgb(8, 148, 148);">
+    <div class="container">
+      <h1 class="title">Anytime</h1>
+      <h4 class="subtitle">Dé app voor jouw vereniging!</h4>
+  </div>
+</div>
+
+  
+<div class="menubar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" routerLink="/grouppage">Anytime</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/events">Activiteiten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/calendar">Agenda</a>
+          </li>
+        </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logout()">Uitloggen</button>
+      </div>
+    </div>
+  </nav>
+</div>
+
+  <router-outlet></router-outlet>
+
+<br>
+
+
+<div class="event">
+
+<div class="float-right">
+
+  <button class="btn btn-dark my-2 my-sm-0" type="button" data-toggle="modal" data-target="#neweventModal">Nieuwe Activiteit</button>
+
+
+  <div class="modal fade" id="neweventModal" tabindex="-1" role="dialog" aria-labelledby="neweventModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="neweventModalLabel">Nieuwe Activiteit</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="allevent.eventname" class="form-control" name="eventname" placeholder="Naam">
+                <br>
+                <input type="text" [(ngModel)]="allevent.eventlocation" class="form-control" name="eventlocation" placeholder="Locatie">
+                <br>
+                <textarea [(ngModel)]="allevent.eventdescription" class="form-control" name="eventdescription" placeholder="Omschrijving" rows="4"></textarea>
+                <br>
+                <input [(ngModel)]="allevent.eventdate" class="form-control" name="eventdate" placeholder="Datum MM/DD/JJJJ" type="date">
+              </div>
+              <button type="submit" (click)="saveallevents()" class="btn btn-dark" data-dismiss="modal">Activiteit opslaan</button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+    
+  <br>
+  <br>
+
+  <!-- <nav class="d-none d-xl-block col-xl-2 bd-toc" aria-label="Secondary navigation">
+    <ul class="section-nav" *ngFor="let allevent of allevents">
+      <li class="toc-entry"><a href="events#{{allevent.eventname}}">{{allevent.eventname}}</a></li>
+    </ul>
+  </nav> -->
+
+
+</div>
+
+
+<div class="float-left" style="width: 80%;">
+
+  <h3>Aankomende activiteiten</h3>
+  <h6>Geef hieronder aan of je aanwezig bent bij de aankomende activiteiten.</h6>
+  <br>
+
+  
+<div class="input-group">
+  <select [(ngModel)]="allevent.eventname" class="custom-select">
+    <option  selected>Kies je activiteit...</option>
+    <option *ngFor="let allevent of allevents" >{{allevent.eventname}}</option>
+  </select>
+  <div class="input-group-append">
+    <button class="btn btn-dark my-2 my-sm-0" type="submit" (click)="findevent()">Ga naar activiteit</button>
+  </div>
+</div>
+
+<br>
+
+
+  <div class="jumbotron">
+  
+    <button type="submit" class="close" aria-label="Close" data-toggle="modal" data-target="#deleteeventModal">
+      <span aria-hidden="true">&times;</span>
+    </button>
+      
+      <h1 class="display-4">{{currentEventname}}</h1>
+      <p class="lead">{{currentEventlocation}}</p>
+      <p class="lead">{{currentEventdate}}</p>
+      <hr class="my-4">
+      <p>{{currentEventdescription}}</p>
+      <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Eventuele opmerkingen:  </label>
+            <input class="form-control" type="text" name="opmerking" placeholder="Opmerking" [(ngModel)]="event.remark">
+          </div>
+          <div class="form-inline my-2 my-lg-0">
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" (click)="saveevents()">Aanmelden</button>
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#afmeldeneventModal">Afmelden</button>
+          </div>
+      </form>
+
+      <br>
+      <br>
+  
+
+    <table>
+      <tr>
+      <th>Aanwezig</th>
+      <th>Opmerking</th>
+    </tr>
+      <tr *ngFor="let event of events">
+        <td>{{event.user.username}}</td>
+        <td>{{event.remark}}</td>
+
+      </tr>
+    </table>
+
+
+
+    <div class="modal fade" id="afmeldeneventModal" tabindex="-1" role="dialog" aria-labelledby="afmeldeneventModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <table>
+              <tr>
+                <td>Weet u zeker dat u zich wilt afmelden voor {{currentEventname}}?</td>
+              </tr>
+          </table>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <button class="btn btn-dark" type="button" (click)="logoutevent()" data-dismiss="modal">Afmelden activiteit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="deleteeventModal" tabindex="-1" role="dialog" aria-labelledby="deleteeventModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <table>
+              <tr>
+                <td>Weet u zeker dat u alle aanwezigen voor {{currentEventname}} wilt afmelden?</td>
+              </tr>
+          </table>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <button class="btn btn-dark" type="button" (click)="deleteevent()" data-toggle="modal" data-target="#deleteevent2Modal" data-dismiss="modal">Aanwezigen verwijderen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="deleteevent2Modal" tabindex="-1" role="dialog" aria-labelledby="deleteevent2ModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <table>
+              <tr>
+                <td>Weet u zeker dat u de activiteit {{currentEventname}} wilt verwijderen?</td>
+              </tr>
+          </table>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <button class="btn btn-dark" type="button" (click)="deleteallevents(currentEventID)" data-dismiss="modal">Activiteit verwijderen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>

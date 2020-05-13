@@ -1,0 +1,116 @@
+<div class="jumbotron jumbotron-fluid" style="background-color: rgb(8, 148, 148);">
+    <div class="container">
+      <h1 class="title">Anytime</h1>
+      <h4 class="subtitle">Dé app voor jouw vereniging!</h4>
+    </div>
+  </div>
+  
+  <div class="menubar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" routerLink="">Anytime</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-succes my-2 my-sm-0" type="button" data-toggle="modal" data-target="#registerModal">Registreren</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="button" data-toggle="modal" data-target="#loginModal">Inloggen</button>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Registreren voor Anytime</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input [(ngModel)]="registration.username" type="text" class="form-control" name="username"  aria-describedby="textHelp" placeholder="username">
+              <br>
+              <input [(ngModel)]="registration.password" type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <button type="submit" (click)="save()" class="btn btn-dark" data-toggle="modal" data-target="#registeredModal" data-dismiss="modal">Registreren</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Inloggen bij Anytime</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input [(ngModel)]="login.username" type="text" class="form-control"  aria-describedby="textHelp" name="username" placeholder="username">
+              <br>
+              <input [(ngModel)]="login.password" type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <button type="submit" (click)="savelogin()" class="btn btn-dark" data-dismiss="modal">Inloggen</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="registeredModal" tabindex="-1" role="dialog" aria-labelledby="registeredModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <table>
+            <tr *ngFor="let registration of registrations; let last=last">
+              <td *ngIf="last">U bent geregistreerd met gebruikersnaam: {{registration.username}}</td>
+            </tr>
+        </table>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <p>U kunt nu inloggen met uw gebruikersnaam en wachtwoord zoals net geregistreerd.</p>
+            </div>
+            <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Inloggen</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="homepage">
+    <h1 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+      Welkom bij Anytime!
+    </h1>
+  
+    <p>
+      Met Anytime ben je altijd op de hoogte welke leden van jouw groep aanwezig zijn bij trainingen, repetites of andere activiteiten. Verder kun je in jouw agenda een overzicht houden van welke activiteiten er voor jou gepland staan. 
+      De ideale manier om geen enkel evenement te hoeven missen en zo contact te houden met andere leden. 
+      <br>
+      <br>
+      Kortom; ontdek Anytime!
+      <br>
+      <br>
+      Klik rechtsboven om in te loggen op je account. Ben je nieuw bij Anytime? Maak dan een account aan door op Registreren te klikken. 
+    </p>
+  
+  
+  </div>
+  
